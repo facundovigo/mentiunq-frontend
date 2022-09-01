@@ -1,7 +1,13 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to MENTI UNQ"/>
+    <img  style="width:50% !important" src="./assets/Logo-UNQ-RGB.png">
+    <HelloWorld style="margin-top:7% !important " msg="Bienvenidos a MENTI UNQ"/>
+    <!-- Footer -->
+    <footer class="page-footer font-small blue pt-4" style="margin-top:5%">
+            <p> Creado por Alumnos de la Universidad Nacional De Quilmes by 12c  ♥
+            <img  style="width:5% !important" src="./assets/cactus.png">           
+            </p> 
+    </footer>
   </div>
 </template>
 
@@ -17,6 +23,7 @@ export default {
 </script>
 
 <style>
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
