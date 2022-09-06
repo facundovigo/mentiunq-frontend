@@ -24,6 +24,18 @@ npm run test
 ```
 npm run lint
 ```
+## To launch the project with docker
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### We build the Docker image
+```
+docker build -t menti-unq/menti-unq-app .       
+```
+
+#### Run the image with Docker
+```
+docker run -it -p 8080:80 --rm --name menti-unq-app menti-unq/menti-unq-app
+```
+### Enter the url
+```
+http://localhost:8080/
+```
