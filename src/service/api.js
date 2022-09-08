@@ -1,6 +1,8 @@
 import axios from 'axios';
 //server backend
-const server = 'http://127.0.0.1:8000'
+//const server = 'http://127.0.0.1:8000'
+
+const server = 'https://menti-backend.herokuapp.com'
 
 const API = {
     get: path => axios.get(`${server}${path}`).then(response => response.data),
