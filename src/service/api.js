@@ -4,6 +4,13 @@ import axios from 'axios';
 
 const server = 'https://menti-backend.herokuapp.com'
 
+// const API = axios.create({
+//     headers: {
+//       "Access-Control-Allow-Origin": "*"
+//     }
+//   });
+  
+
 const API = {
     get: path => axios.get(`${server}${path}`).then(response => response.data),
     put: (path, body) => axios.put(`${server}${path}`, body).then(response => response.data),
@@ -23,6 +30,7 @@ const API = {
 //         return Promise.reject(error);
 //     }
 // );
+
 
 
 export default API;

@@ -1,10 +1,13 @@
-import Vue from 'vue'
-import App from './App.vue'
-import "bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
+import { createApp } from "vue";
+import App from "./App.vue";
+import store from "./store";
+import router from "./router";
+import "./assets/css/nucleo-icons.css";
+import "./assets/css/nucleo-svg.css";
+import MaterialMentiUnq from "./material-menti-unq";
 
-Vue.config.productionTip = false
-
-new Vue({
-  render: h => h(App),
-}).$mount('#app')
+const appInstance = createApp(App);
+appInstance.use(store);
+appInstance.use(router);
+appInstance.use(MaterialMentiUnq);
+appInstance.mount("#app");
