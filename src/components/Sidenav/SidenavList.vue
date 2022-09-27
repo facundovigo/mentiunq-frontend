@@ -9,47 +9,8 @@
           url="#"
           :aria-controls="''"
           v-bind:collapse="false"
-          collapseRef="dashboard"
-          navText="Dashboard"
-        >
-          <template v-slot:icon>
-            <i class="material-icons-round opacity-10 fs-5">dashboard</i>
-          </template>
-        </sidenav-collapse>
-      </li>
-      <li class="nav-item">
-        <sidenav-collapse
-          url="#"
-          :aria-controls="''"
-          v-bind:collapse="false"
-          collapseRef="tables"
-          navText="Tables"
-        >
-          <template v-slot:icon>
-            <i class="material-icons-round opacity-10 fs-5">table_view</i>
-          </template>
-        </sidenav-collapse>
-      </li>
-      <li class="nav-item">
-        <sidenav-collapse
-          url="#"
-          :aria-controls="''"
-          v-bind:collapse="false"
-          collapseRef="billing"
-          navText="Billing"
-        >
-          <template v-slot:icon>
-            <i class="material-icons-round opacity-10 fs-5">receipt_long</i>
-          </template>
-        </sidenav-collapse>
-      </li>
-      <li class="nav-item">
-        <sidenav-collapse
-          url="#"
-          :aria-controls="''"
-          v-bind:collapse="false"
-          collapseRef="rtl-page"
-          navText="Rtl"
+          collapseRef="Hacer"
+          navText="Hacer Pregunta"
         >
           <template v-slot:icon>
             <i class="material-icons-round opacity-10 fs-5"
@@ -63,8 +24,8 @@
           url="#"
           :aria-controls="''"
           v-bind:collapse="false"
-          collapseRef="notifications"
-          navText="Notifications"
+          collapseRef="Responder"
+          navText="Responder"
         >
           <template v-slot:icon>
             <i class="material-icons-round opacity-10 fs-5">notifications</i>
@@ -76,7 +37,7 @@
           class="text-xs ps-4 text-uppercase font-weight-bolder text-white"
           :class="this.$store.state.isRTL ? 'me-4' : 'ms-2'"
         >
-          ACCOUNT PAGES
+          Extras
         </h6>
       </li>
       <li class="nav-item">
@@ -122,10 +83,11 @@
     <div class="sidenav-footer position-absolute w-100 bottom-0">
       <div class="mx-3">
         <a
+          href="#"
+          @click="toggleSidebar"
           class="btn mt-4 w-100"
           :class="`bg-gradient-${this.$store.state.color}`"
-          href="https://www.creative-tim.com/product/vue-material-dashboard-2-pro"
-          >Upgrade to pro</a
+          >Ocultar Panel</a
         >
       </div>
     </div>
@@ -133,12 +95,13 @@
 </template>
 <script>
 import SidenavCollapse from "./SidenavCollapse.vue";
-
+import { mapMutations,  } from "vuex";
 export default {
   name: "SidenavList",
   props: {
     cardBg: String
   },
+  
   data() {
     return {
       title: "Soft UI Dashboard PRO",
@@ -146,8 +109,16 @@ export default {
       isActive: "active"
     };
   },
+  
   components: {
     SidenavCollapse
-  }
+  },
+  methods: {
+    ...mapMutations(["navbarMinimize", "toggleConfigurator"]),
+
+    toggleSidebar() {
+      this.navbarMinimize();
+    },
+  },
 };
 </script>

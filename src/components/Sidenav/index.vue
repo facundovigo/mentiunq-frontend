@@ -13,7 +13,7 @@
         id="iconSidenav"
       ></i>
       <a class="m-0 navbar-brand" href="/">
-        <img
+        <img 
           :src="
             sidebarType === 'bg-white' ||
             (sidebarType === 'bg-transparent' && !isDarkMode)
@@ -23,9 +23,7 @@
           class="navbar-brand-img h-100"
           alt="main_logo"
         />
-        <span class="ms-2 font-weight-bold text-white"
-          >Material Dashboard 2</span
-        >
+        <span class="ms-2 font-weight-bold text-white" >Menti UNQ</span>
       </a>
     </div>
     <hr class="horizontal light mt-0 mb-2" />
