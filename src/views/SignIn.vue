@@ -98,7 +98,7 @@ export default {
     this.toggleHideConfig();
   },
   beforeUnmount() {
-    this.toggleEveryDisplay();c
+    this.toggleEveryDisplay();
     this.toggleHideConfig();
   },
   methods: {
