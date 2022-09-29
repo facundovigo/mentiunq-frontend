@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-auto h-auto collapse navbar-collapse max-height-vh-100 h-100"
+    class="w-auto h-auto max-height-vh-100 h-100"
     id="sidenav-collapse-main"
   >
     <ul class="navbar-nav">
@@ -14,7 +14,7 @@
         >
           <template v-slot:icon>
             <i class="material-icons-round opacity-10 fs-5"
-              >format_textdirection_r_to_l</i
+              >question_answer</i
             >
           </template>
         </sidenav-collapse>
@@ -28,7 +28,7 @@
           navText="Responder"
         >
           <template v-slot:icon>
-            <i class="material-icons-round opacity-10 fs-5">notifications</i>
+            <i class="material-icons-round opacity-10 fs-5">description</i>
           </template>
         </sidenav-collapse>
       </li>
@@ -42,45 +42,32 @@
       </li>
       <li class="nav-item">
         <sidenav-collapse
-          url="#"
-          :aria-controls="''"
-          v-bind:collapse="false"
-          collapseRef="profile"
-          navText="Profile"
+        url="#"
+        :aria-controls="''"
+        v-bind:collapse="false"
+        collapseRef="Profile"
+        navText="Profile"
         >
-          <template v-slot:icon>
-            <i class="material-icons-round opacity-10 fs-5">person</i>
-          </template>
-        </sidenav-collapse>
-      </li>
-      <li class="nav-item">
-        <sidenav-collapse
-          url="#"
-          :aria-controls="''"
-          v-bind:collapse="false"
-          collapseRef="sign-in"
-          navText="SignIn"
-        >
-          <template v-slot:icon>
-            <i class="material-icons-round opacity-10 fs-5">login</i>
-          </template>
-        </sidenav-collapse>
-      </li>
-      <li class="nav-item">
-        <sidenav-collapse
-          url="#"
-          :aria-controls="''"
-          v-bind:collapse="false"
-          collapseRef="sign-up"
-          navText="SignUp"
-        >
-          <template v-slot:icon>
-            <i class="material-icons-round opacity-10 fs-5">assignment</i>
-          </template>
-        </sidenav-collapse>
-      </li>
+        <template v-slot:icon>
+          <i class="material-icons-round opacity-10 fs-5">person</i>
+        </template>
+      </sidenav-collapse>
+    </li>
+    <li class="nav-item">
+      <sidenav-collapse
+        url="#"
+        :aria-controls="''"
+        v-bind:collapse="false"
+        collapseRef="sign-in"
+        navText="Log Out"
+      >
+        <template v-slot:icon>
+          <i class="material-icons-round opacity-10 fs-5">logout</i>
+        </template>
+      </sidenav-collapse>
+    </li>
     </ul>
-    <div class="sidenav-footer position-absolute w-100 bottom-0">
+    <div v-if="this.$store.state.prueba" class="sidenav-footer position-absolute w-100 bottom-0">
       <div class="mx-3">
         <a
           href="#"

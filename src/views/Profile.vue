@@ -1,14 +1,6 @@
 <template>
   <div class="container-fluid">
-    <div
-      class="page-header min-height-300 border-radius-xl mt-4"
-      style="
-        background-image: url('https://images.unsplash.com/photo-1531512073830-ba890ca4eba2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
-      "
-    >
-      <span class="mask bg-gradient-success opacity-6"></span>
-    </div>
-    <div class="card card-body mx-3 mx-md-4 mt-n6">
+    <div class="card card-body mx-3 mx-md-4 mt-n6 card-padding">
       <div class="row gx-4">
         <div class="col-auto">
           <div class="avatar avatar-xl position-relative">
@@ -81,6 +73,7 @@
                         </g>
                       </g>
                     </g>
+    DefaultProjectCard,
                   </svg>
                   <span class="ms-1">App</span>
                 </a>
@@ -431,126 +424,7 @@
               <h6 class="mb-1">Projects</h6>
               <p class="text-sm">Architects design houses</p>
             </div>
-            <div class="row">
-              <default-project-card
-                title="Modern"
-                :image="img1"
-                label="Project #2"
-                description="As Uber works through a huge amount of internal
-                management turmoil."
-                :authors="[
-                  {
-                    image: team1,
-                    name: 'Elena Morison',
-                  },
-                  {
-                    image: team2,
-                    name: 'Ryan Milly',
-                  },
-                  {
-                    image: team3,
-                    name: 'Nick Daniel',
-                  },
-                  {
-                    image: team4,
-                    name: 'Peterson',
-                  },
-                ]"
-                :action="{
-                  color: 'success',
-                  label: 'View Project',
-                }"
-              />
 
-              <default-project-card
-                title="Scandinavian"
-                :image="img2"
-                label="Project #1"
-                description="Music is something that every person has his or her own
-                      specific opinion about."
-                :authors="[
-                  {
-                    image: team3,
-                    name: 'Nick Daniel',
-                  },
-                  {
-                    image: team4,
-                    name: 'Peterson',
-                  },
-                  {
-                    image: team1,
-                    name: 'Elena Morison',
-                  },
-                  {
-                    image: team2,
-                    name: 'Ryan Milly',
-                  },
-                ]"
-                :action="{
-                  color: 'success',
-                  label: 'View Project',
-                }"
-              />
-
-              <default-project-card
-                title="Minimalist"
-                :image="img3"
-                label="Project #3"
-                description="Different people have different taste, and various types
-                      of music."
-                :authors="[
-                  {
-                    image: team4,
-                    name: 'Peterson',
-                  },
-                  {
-                    image: team3,
-                    name: 'Nick Daniel',
-                  },
-                  {
-                    image: team1,
-                    name: 'Elena Morison',
-                  },
-                  {
-                    image: team2,
-                    name: 'Ryan Milly',
-                  },
-                ]"
-                :action="{
-                  color: 'success',
-                  label: 'View Project',
-                }"
-              />
-              <default-project-card
-                title="Gothic"
-                image="https://images.unsplash.com/photo-1606744824163-985d376605aa?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-                label="Project #4"
-                description="Why would anyone pick blue over pink? Pink is obviously a
-                      better color."
-                :authors="[
-                  {
-                    image: team4,
-                    name: 'Peterson',
-                  },
-                  {
-                    image: team3,
-                    name: 'Nick Daniel',
-                  },
-                  {
-                    image: team2,
-                    name: 'Ryan Milly',
-                  },
-                  {
-                    image: team1,
-                    name: 'Elena Morison',
-                  },
-                ]"
-                :action="{
-                  color: 'success',
-                  label: 'View Project',
-                }"
-              />
-            </div>
           </div>
         </div>
       </div>
@@ -559,8 +433,7 @@
 </template>
 
 <script>
-import ProfileInfoCard from "./components/ProfileInfoCard.vue";
-import DefaultProjectCard from "./components/DefaultProjectCard.vue";
+import ProfileInfoCard from "../components/ProfileInfoCard.vue";
 import MaterialSwitch from "@/components/MaterialSwitch.vue";
 import MaterialAvatar from "@/components/MaterialAvatar.vue";
 import sophie from "@/assets/img/kal-visuals-square.jpg";
@@ -600,7 +473,6 @@ export default {
   },
   components: {
     ProfileInfoCard,
-    DefaultProjectCard,
     MaterialSwitch,
     MaterialAvatar,
   },
@@ -615,3 +487,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.card-padding{
+  padding-top: 18% !important;
+}
+</style>

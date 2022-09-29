@@ -1,13 +1,9 @@
 import { createRouter, createWebHistory } from "vue-router";
-// import Dashboard from "../views/Dashboard.vue";
-// import Tables from "../views/Tables.vue";
-// import Billing from "../views/Billing.vue";
-// import RTL from "../views/Rtl.vue";
-// import Notifications from "../views/Notifications.vue";
-// import Profile from "../views/Profile.vue";
 import SignIn from "../views/SignIn.vue";
 import SignUp from "../views/SignUp.vue";
-import Home from "../views/Home.vue"
+//import Home from "../views/Home.vue"
+import Responder from "../views/Tables.vue";
+import Profile from "../views/Profile.vue"
 
 const routes = [
   {
@@ -15,40 +11,11 @@ const routes = [
     name: "/",
     redirect: "/sign-in",
   },
-  // {
-  //   path: "/dashboard",
-  //   name: "Dashboard",
-  //   component: Dashboard,
-  // },
-  // {
-  //   path: "/tables",
-  //   name: "Tables",
-  //   component: Tables,
-  // },
-  // {
-  //   path: "/billing",
-  //   name: "Billing",
-  //   component: Billing,
-  // },
-  // {
-  //   path: "/rtl-page",
-  //   name: "RTL",
-  //   component: RTL,
-  // },
-  // {
-  //   path: "/notifications",
-  //   name: "Notifications",
-  //   component: Notifications,
-  // },
-  // {
-  //   path: "/profile",
-  //   name: "Profile",
-  //   component: Profile,
-  // },
-    {
-    path: "/Home",
-    name: "Home",
-    component: Home,
+
+  {
+    path: "/Responder",
+    name: "Responder",
+    component: Responder,
   },
   {
     path: "/sign-in",
@@ -59,6 +26,11 @@ const routes = [
     path: "/sign-up",
     name: "SignUp",
     component: SignUp,
+  },
+  {
+    path: "/Profile",
+    name: "Profile",
+    component: Profile,
   },
 ];
 

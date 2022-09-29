@@ -14,7 +14,8 @@
               <div
                 class="col-6 d-lg-flex d-none h-100 my-auto pe-0 ps-0 position-absolute top-0 start-0 text-center justify-content-center flex-column"
               >
-                <div class="position-relative h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center Img-Back"              
+                <div
+                  class="position-relative h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center Img-Back"
                 ></div>
               </div>
               <div
@@ -104,12 +105,28 @@
 import MaterialInput from "@/components/MaterialInput.vue";
 import MaterialCheckbox from "@/components/MaterialCheckbox.vue";
 import MaterialButton from "@/components/MaterialButton.vue";
+const body = document.getElementsByTagName("body")[0];
+import { mapMutations } from "vuex";
+
 export default {
   name: "sign-up",
   components: {
     MaterialInput,
     MaterialCheckbox,
     MaterialButton,
+  },
+  beforeMount() {
+    this.toggleEveryDisplay();
+    this.toggleHideConfig();
+    body.classList.remove("bg-gray-100");
+  },
+  beforeUnmount() {
+    this.toggleEveryDisplay();
+    this.toggleHideConfig();
+    body.classList.add("bg-gray-100");
+  },
+  methods: {
+    ...mapMutations(["toggleEveryDisplay", "toggleHideConfig"]),
   },
 };
 </script>

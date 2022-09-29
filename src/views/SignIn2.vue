@@ -1,8 +1,5 @@
 <template>
-
-  <div
-    class="page-header align-items-start min-vh-100 pepe"  
-  >
+  <div class="page-header align-items-start min-vh-100 pepe" >
     <span class="mask bg-gradient-dark opacity-6"></span>
     <div class="container my-auto">
       <div class="row">
@@ -12,9 +9,11 @@
               <div
                 class="bg-gradient-success shadow-success border-radius-lg py-3 pe-1"
               >
-                <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">
+                <h4 class="text-white font-weight-bolder text-center mt-2 mb-0 t-label">
                   Sign in Menti Unq
                 </h4>
+                <div class="row mt-3">
+                </div>
               </div>
             </div>
             <div class="card-body">
@@ -35,13 +34,15 @@
                     name="password"
                   />
                 </div>
+                <material-switch id="rememberMe" name="rememberMe"
+                  >¿Pregunta/Preguntador?</material-switch
+                >
                 <div class="text-center">
                   <material-button
                     class="my-4 mb-2"
                     variant="gradient"
                     color="success"
                     fullWidth
-                    v-on:click="funca()"
                     >Sign in</material-button
                   >
                 </div>
@@ -65,7 +66,7 @@
           <div class="col-12 col-md-6 my-auto">
             <div class="copyright text-center text-sm text-white text-lg-start">
               © {{ new Date().getFullYear() }}, made with
-              <i class="fa fa-quora b" aria-hidden="true" style="color: red" ></i> by <a class="font-weight-bold text-white font-style"
+              <i class="fa fa-quora b" aria-hidden="true" ></i> by <a class="font-weight-bold text-white font-style"
                 target="_blank"
                 >12c</a>
             </div>
@@ -83,35 +84,31 @@
 </template>
 
 <script>
+
 import MaterialInput from "@/components/MaterialInput.vue";
+import MaterialSwitch from "@/components/MaterialSwitch.vue";
 import MaterialButton from "@/components/MaterialButton.vue";
-import { mapMutations } from "vuex";
+
 
 export default {
   name: "sign-in",
   components: {
     MaterialInput,
+    MaterialSwitch,
     MaterialButton,
-  },
-  beforeMount() {
-    this.toggleEveryDisplay();
-    this.toggleHideConfig();
-  },
-  beforeUnmount() {
-    this.toggleEveryDisplay();c
-    this.toggleHideConfig();
-  },
-  methods: {
-    ...mapMutations(["toggleEveryDisplay", "toggleHideConfig"]),
-    funca(){
-      this.$router.push('/Responder')
-    }
   },
 };
 </script>
-
 <style scoped>
-
+.b {
+color: brown !important;
+}
+.font-style {
+  color: green !important;
+}
+.t-label{
+  font-style: oblique !important;
+}
 .pepe {
   background-image: url('../../src/assets/img/UNQ.jpg'); ;
 }
