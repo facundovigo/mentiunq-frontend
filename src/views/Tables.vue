@@ -1,29 +1,56 @@
 <template>
-  <div class="container-fluid py-4">
+  <div class="container-fluid card-padding py-4 d-xl-none">
+
+      <div v-if="!this.pepe" class="spinerr-collapse d-xl-none">
+              <div  class=" spinner-grow text-success m-1 " 
+                  style="width: 20rem; height: 20rem; " role="status">
+              </div>
+      </div> 
+      <div v-if="pepe" class="card d-xl-none " style="width: 20rem;">
+        <img src="../assets/img/ivana-square.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item text-li">Answer</li>
+            <li class="list-group-item"></li>
+          </ul>
+          <p class="card-text">
+                {{data}}
+          </p>
+        </div>
+    </div>
+   </div>   
+
+
+  <div class="container-fluid py-4 d-none d-xxl-block">
     <div class="row">
       <div class="col-12">
-        <div class="card my-4">
+        <div  class="card my-4 d-none d-xxl-block">
           <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
             <div
               class="bg-gradient-success shadow-success border-radius-lg pt-4 pb-3"
             >
-              <h6 class="text-white text-capitalize ps-3">Authors table</h6>
+              <h6 class="text-white text-capitalize ps-3">{{name}}</h6>
             </div>
           </div>
           <div class="card-body px-0 pb-2">
             <div class="table-responsive p-0">
-              <table class="table align-items-center mb-0">
+              <div v-if="!this.pepe" class="spinerr d-none d-xxl-block">
+                <div  class=" spinner-grow text-success m-1 " 
+                  style="width: 20rem; height: 20rem; " role="status">
+                </div>
+              </div> 
+              <table v-if="pepe"  class="table align-items-center mb-0 ">
                 <thead>
                   <tr>
                     <th
                       class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
                     >
-                      Author
+                      Person
                     </th>
                     <th
                       class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
                     >
-                      Function
+                    Question
                     </th>
                     <th
                       class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
@@ -50,20 +77,19 @@
                           />
                         </div>
                         <div class="d-flex flex-column justify-content-center">
-                          <h6 class="mb-0 text-sm">John Michael</h6>
+                          <h6 class="mb-0 text-sm">{{name}}</h6>
                           <p class="text-xs text-secondary mb-0">
-                            john@creative-tim.com
+                            {{mail}}
                           </p>
                         </div>
                       </div>
                     </td>
                     <td>
-                      <p class="text-xs font-weight-bold mb-0">Manager</p>
-                      <p class="text-xs text-secondary mb-0">Organization</p>
+                      <p class="text-xs text-secondary mb-0">{{data}}</p>
                     </td>
                     <td class="align-middle text-center text-sm">
                       <span class="badge badge-sm bg-gradient-success"
-                        >Online</span
+                        >Ok</span
                       >
                     </td>
                     <td class="align-middle text-center">
@@ -281,7 +307,7 @@
                         >Offline</span
                       >
                     </td>
-                    <td class="align-middle text-center">
+                    <td class="align-middle tnameext-center">
                       <span class="text-secondary text-xs font-weight-bold"
                         >14/09/20</span
                       >
@@ -305,10 +331,63 @@
       </div>
     </div>
   </div>
+
+
 </template>
 
 <script>
+  import API from '../service/api';
 export default {
   name: "tables",
+    mounted() {
+      this.prueba()
+    },
+    props: ['post'],
+    data(){
+      return{
+        data: "",
+        name:"",
+        email:"",
+        pepe: false
+      }
+    },
+    methods: {
+      prueba(){
+        API.get(`/slides/`)
+        .then( resp => this.data = resp ,
+          this.pepe = !this.pepe,
+          this.name = localStorage.getItem('name'),
+          this.mail = localStorage.getItem('email'),
+          console.log(this.pepe)
+        )
+          .catch(e => e)
+
+      },
+    }    
 };
 </script>
+<style scoped>
+.spinerr{
+  padding-left: 30% !important;
+}
+
+.spinerr-collapse{
+  padding-left: 5% !important;
+}
+.card-padding{
+  padding-left: 3rem !important;
+}
+.card-text {
+  font-weight: bold;
+  font-size: 1.5rem !important;
+  font-style: italic;
+}
+
+.text-li {
+  font-weight: bold;
+  font-size: 1.2rem !important;
+  color: black !important
+
+
+}
+</style>

@@ -29,7 +29,7 @@
                     </p>
                   </div>
                   <div class="card-body">
-                    <form role="form">
+                    <form role="form" @submit.prevent="register">
                       <div class="mb-3">
                         <material-input
                           id="name"
@@ -37,6 +37,7 @@
                           label="Name"
                           name="name"
                           size="lg"
+                          class="form-control"
                         />
                       </div>
                       <div class="mb-3">
@@ -46,6 +47,7 @@
                           label="Email"
                           name="email"
                           size="lg"
+                          class="form-control"
                         />
                       </div>
                       <div class="mb-3">
@@ -57,26 +59,21 @@
                           size="lg"
                         />
                       </div>
-                      <material-checkbox
-                        id="flexCheckDefault"
-                        class="font-weight-light"
-                        checked
-                      >
-                        I agree the
-                        <a
-                          href="../../../pages/privacy.html"
-                          class="text-dark font-weight-bolder"
-                          >Terms and Conditions</a
-                        >
-                      </material-checkbox>
                       <div class="text-center">
+                        <button v-if="this.spin" class="btn btn-success btn-style " type="button" disabled>
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                          Loading...
+                        </button>
                         <material-button
+                        v-if="!this.spin"
                           class="mt-4"
                           variant="gradient"
                           color="success"
                           fullWidth
                           size="lg"
-                          >Sign Up</material-button
+                          type="submit"
+                            >Sign Up
+                          </material-button
                         >
                       </div>
                     </form>
@@ -103,18 +100,17 @@
 
 <script>
 import MaterialInput from "@/components/MaterialInput.vue";
-import MaterialCheckbox from "@/components/MaterialCheckbox.vue";
 import MaterialButton from "@/components/MaterialButton.vue";
 const body = document.getElementsByTagName("body")[0];
 import { mapMutations } from "vuex";
-
+import API from '../service/api';
 export default {
   name: "sign-up",
   components: {
     MaterialInput,
-    MaterialCheckbox,
     MaterialButton,
   },
+  
   beforeMount() {
     this.toggleEveryDisplay();
     this.toggleHideConfig();
@@ -125,13 +121,45 @@ export default {
     this.toggleHideConfig();
     body.classList.add("bg-gray-100");
   },
-  methods: {
-    ...mapMutations(["toggleEveryDisplay", "toggleHideConfig"]),
+  data() {
+    return {
+      spin: false,
+      body:{
+        first_name: null,
+        email: null,
+        password: null,
+      }
+    }
   },
+  methods: {
+    ...mapMutations(
+      ["toggleEveryDisplay", "toggleHideConfig"]
+    ),
+    register(submitEvent){
+      
+      this.body.first_name = submitEvent.target.elements.name.value,
+      this.body.email = submitEvent.target.elements.email.value,
+      this.body.password = submitEvent.target.elements.password.value,
+      
+      API.post(`/user/auth/register/`, this.body)
+        .then( usr => {
+          this.spin = !this.spin
+          localStorage.setItem('name', usr.user.first_name)
+          localStorage.setItem('email', usr.user.email)
+          this.$router.push('Responder')
+        })
+        .catch(e => alert(e),this.spin = !this.spin)    
+
+    }
+  },
+
 };
 </script>
 
 <style scoped>
+.btn-style{
+  width: 22rem !important ;
+}
   .t-label{
   font-style: oblique !important;
 }

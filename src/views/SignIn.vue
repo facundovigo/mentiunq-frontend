@@ -1,5 +1,4 @@
 <template>
-
   <div
     class="page-header align-items-start min-vh-100 pepe"  
   >
@@ -18,13 +17,14 @@
               </div>
             </div>
             <div class="card-body">
-              <form role="form" class="text-start mt-3">
+              <form role="form" class="text-start mt-3" @submit.prevent="login">
                 <div class="mb-3">
                   <material-input
                     id="email"
                     type="email"
                     label="Email"
                     name="email"
+                    class="form-control"
                   />
                 </div>
                 <div class="mb-3">
@@ -33,15 +33,20 @@
                     type="password"
                     label="Password"
                     name="password"
+                    class="form-control"
                   />
                 </div>
-                <div class="text-center">
-                  <material-button
+                <div class="text-center ">
+                  <button v-if="this.spin" class="btn btn-success btn-style " type="button" disabled>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Loading...
+                  </button>
+                  <material-button v-if="!this.spin"
                     class="my-4 mb-2"
                     variant="gradient"
                     color="success"
                     fullWidth
-                    v-on:click="funca()"
+                    type="submit"
                     >Sign in</material-button
                   >
                 </div>
@@ -86,12 +91,22 @@
 import MaterialInput from "@/components/MaterialInput.vue";
 import MaterialButton from "@/components/MaterialButton.vue";
 import { mapMutations } from "vuex";
+import API from '../service/api';
 
 export default {
   name: "sign-in",
   components: {
     MaterialInput,
     MaterialButton,
+  },
+  data() {
+    return {
+      spin: false,
+      body:{
+        username: null,
+        password: null,
+      }
+    }
   },
   beforeMount() {
     this.toggleEveryDisplay();
@@ -103,15 +118,30 @@ export default {
   },
   methods: {
     ...mapMutations(["toggleEveryDisplay", "toggleHideConfig"]),
-    funca(){
-      this.$router.push('/Responder')
+    login(submitEvent){
+      this.body.username = submitEvent.target.elements.email.value
+      this.body.password = submitEvent.target.elements.password.value
+      console.log(this.body)
+      API.post(`/user/auth/login/`, this.body)
+        .then( usr => {
+          this.spin = !this.spin
+          localStorage.setItem('email', usr.user.email)
+          localStorage.setItem('name', usr.user.first_name)
+          this.$router.push('Responder')
+
+
+        })
+        .catch(e => alert(e),this.spin = !this.spin)  
     }
   },
+
 };
 </script>
 
 <style scoped>
-
+.btn-style{
+  width: 22rem !important ;
+}
 .pepe {
   background-image: url('../../src/assets/img/UNQ.jpg'); ;
 }
